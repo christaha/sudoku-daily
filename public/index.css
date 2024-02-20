@@ -1,0 +1,96 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color: #213547;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #747bff;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:hover {
+  background-color: #d9d9d9;
+}
+
+td {
+  height: 60px;
+  width: 60px;
+  border: 1px black solid;
+}
+
+.sudoku-board input {
+  border: none;
+  outline: none;
+  width: 80%;
+  height: 80%;
+  text-align: center;
+  font-size: 30px;
+}
+
+.sudoku-board {
+  font-size: 30px;
+}
+
+#number-buttons {
+  font-size: 30px;
+  margin-top: 20px;
+}
+
+#number-buttons button {
+  width: 90px;
+  height: 80px;
+  padding: 10px;
+  margin: 4px 0px;
+}
+
+.toolbar {
+  margin-bottom: 20px;
+}

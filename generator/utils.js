@@ -1,22 +1,30 @@
 function createEmptyBoard() {
-    row = Array(9).fill(".")
-    return Array(9).fill(row)
+  const result = [];
+  for (let r = 0; r < 9; r += 1) {
+    const row = [];
+    for (let c = 0; c < 9; c += 1) {
+      row.push('.');
+    }
+    result.push(row);
+  }
+  return result;
 }
 
 function createShuffledArray(start, end) {
-    const unshuffled = []
-    for (let i = start; i < end; i++) {
-        unshuffled.push(i)
-    }
+  const unshuffled = [];
+  for (let i = start; i <= end; i += 1) {
+    unshuffled.push(i);
+  }
 
-    // let shuffled = unshuffled.map(value => ({ value, sort: Math.random() }))
-    // .sort((a, b) => a.sort - b.sort)
-    // .map(({ value }) => value)
+  const shuffled = unshuffled.map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
 
-    let shuffled = unshuffled
-        .sort((a, b) => Math.random())
-    
-    return shuffled
+  return shuffled;
 }
 
-module.exports = { createShuffledArray, createEmptyBoard }
+function copyBoard(board) {
+  return structuredClone(board);
+}
+
+module.exports = { createShuffledArray, createEmptyBoard, copyBoard };
