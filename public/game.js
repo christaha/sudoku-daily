@@ -10,19 +10,32 @@ class Game {
     return data[0].board;
   };
 
-  createInput = (element, row, col) => {
+  createCell = (element, row, col) => {
+    const cell = document.createElement('td');
+    cell.id = `${row}_${col}_cell`;
+
     if (this.board[row][col] === '.') {
       const cellInput = document.createElement('input');
       cellInput.type = 'text';
       cellInput.maxLength = 1;
-      cellInput.className = 'cell-input';
       cellInput.id = `${row}_${col}_input`;
-      element.appendChild(cellInput);
+      cell.appendChild(cellInput);
     } else {
+      cell.classList.add('filled-in-tile');
       const cellText = document.createElement('div');
       cellText.innerHTML = String(this.board[row][col]);
-      element.appendChild(cellText);
+      cell.appendChild(cellText);
     }
+
+    if (row === 2 || row === 5) {
+      cell.classList.add('border-bottom');
+    }
+
+    if (col === 2 || col === 5) {
+      cell.classList.add('border-right');
+    }
+
+    element.appendChild(cell);
   };
 
   displayBoard = async () => {
@@ -37,15 +50,12 @@ class Game {
 
     for (let i = 0; i < 9; i += 1) {
       const row = document.createElement('tr');
+
       row.className = `${i}_row`;
       result.appendChild(row);
 
       for (let j = 0; j < 9; j += 1) {
-        const cell = document.createElement('td');
-        cell.id = `${i}_${j}_cell`;
-
-        this.createInput(cell, i, j);
-        row.appendChild(cell);
+        this.createCell(row, i, j);
       }
     }
   };
