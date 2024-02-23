@@ -12,28 +12,32 @@
 
 <body>
     <div id="app">
-        <div class="toolbar">
-            <h3>Play Sudoku</h3>
-            <button id="restart-button">Reset Board</button>
-            <a href='/'><button id="restart-button">Return Home</button></a>
-        </div>
-        <div id="game-wrapper">
-        </div>
-        <div id="number-buttons">
-            <div>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
+        <div id="game-page">
+            <div class="toolbar">
+                <h3>Play Sudoku</h3>
+                <a href='/'><button class="game-button">Return Home</button></a>
+                <button class="game-button" id="reset-button">Reset Board</button>
+                <button class="game-button">Check Puzzle</button>
+                <button class="game-button" id="reset-button">Reveal Square</button>
             </div>
             <div>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-            </div>
-            <div>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
+                <div id="game-wrapper">
+                </div>
+                <div id="number-buttons">
+                    <div>
+                        <button class="number-button" id="1">1</button>
+                        <button class="number-button" id="2">2</button>
+                        <button class="number-button" id="3">3</button>
+                        <button class="number-button" id="4">4</button>
+                        <button class="number-button" id="5">5</button>
+                    </div>
+                    <div>
+                        <button class="number-button" id="6">6</button>
+                        <button class="number-button" id="7">7</button>
+                        <button class="number-button" id="8">8</button>
+                        <button class="number-button" id="9">9</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

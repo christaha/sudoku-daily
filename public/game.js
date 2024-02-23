@@ -1,6 +1,7 @@
 class Game {
   constructor() {
     this.board = undefined;
+    this.activeCell = undefined;
   }
 
   fetchBoard = async () => {
@@ -10,19 +11,34 @@ class Game {
     return data[0].board;
   };
 
+  updateActiveCell = (event) => {
+    if (this.activeCell) {
+      document.getElementById(this.activeCell).classList.remove('active');
+    }
+    this.activeCell = event.srcElement.id;
+    document.getElementById(event.srcElement.id).classList.add('active');
+    console.log(event.srcElement.id, this.activeCell);
+  };
+
+  updateActive = (event) => {
+    if (this.activeCell) {
+      document.getElementById(this.activeCell).classList.remove('active');
+    }
+    this.activeCell = event.srcElement.id;
+    document.getElementById(event.srcElement.id).classList.add('active');
+    console.log(event.srcElement.id, this.activeCell);
+  };
+
   createCell = (element, row, col) => {
     const cell = document.createElement('td');
     cell.id = `${row}_${col}_cell`;
+    const cellText = document.createElement('div');
 
     if (this.board[row][col] === '.') {
-      const cellInput = document.createElement('input');
-      cellInput.type = 'text';
-      cellInput.maxLength = 1;
-      cellInput.id = `${row}_${col}_input`;
-      cell.appendChild(cellInput);
+      cellText.id = `${row}_${col}_input`;
+      cell.onclick = this.updateActive;
     } else {
       cell.classList.add('filled-in-tile');
-      const cellText = document.createElement('div');
       cellText.innerHTML = String(this.board[row][col]);
       cell.appendChild(cellText);
     }
