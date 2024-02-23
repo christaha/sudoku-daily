@@ -77,14 +77,32 @@ td {
 
 #number-buttons {
   font-size: 24px;
-  margin-top: 20px;
 }
 
-#number-buttons button {
+.number-button {
   width: 70px;
   height: 50px;
   padding: 0px;
   margin: 4px 0px;
+}
+
+.buttons-wrapper {
+  display: flex;
+  margin-top: 15px;
+}
+
+.candidate-switch-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
+.candidate-switch {
+  font-size: 18px;
+  height: 50px;
+  margin: 4px 0px;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
 
 .toolbar {
@@ -97,7 +115,7 @@ td {
   margin: 20px;
 }
 
-#game-wrapper {
+#game-table {
   border: 1.5px solid black;
 }
 
@@ -113,7 +131,30 @@ td {
   background-color: #f5f5f5;
 }
 
+.padded-10 {
+  padding: 10px;
+}
+
 #game-page {
   display: flex;
   flex-direction: row;
+}
+
+.loader {
+  border: 16px solid #597ef7; /* Light grey */
+  border-top: 16px solid #f5f5f5; /* Blue */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.5s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hidden {
+  display: none;
 }
