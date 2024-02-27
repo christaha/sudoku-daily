@@ -71,6 +71,14 @@ td {
   background: #d6e4ff;
 }
 
+.not-in-solution {
+  background-color: #ffccc7;
+}
+
+.in-solution {
+  background-color: #d9f7be;
+}
+
 .sudoku-board {
   font-size: 24px;
 }

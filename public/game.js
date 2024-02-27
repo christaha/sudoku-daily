@@ -2,20 +2,46 @@ class Game {
   constructor() {
     this.board = undefined;
     this.activeCell = undefined;
+    this.solution = undefined;
   }
 
   fetchBoard = async () => {
     const res = await fetch('/api/board');
     const data = await res.json();
     this.board = data[0].board;
+    this.solution = data[0].solution;
     return data[0].board;
   };
+
+  getCellFromRowCol(row, col) {
+    return document.getElementById(`${row}_${col}_cell`);
+  }
+
+  getRowColFromId(id) {
+    const [row, col] = id.split('_');
+    return { row, col };
+  }
 
   updateBoard = (value) => {
     const newValue = value === '.' ? '' : value;
     document.getElementById(this.activeCell).innerHTML = newValue;
-    const [row, col] = this.activeCell.split('_');
+    const { row, col } = this.getRowColFromId(this.activeCell);
     this.board[row][col] = newValue;
+  };
+
+  checkBoard = () => {
+    for (let row = 0; row < 9; row += 1) {
+      for (let col = 0; col < 9; col += 1) {
+        if (this.board[row][col] !== '.') {
+          const element = this.getCellFromRowCol(row, col);
+          if (this.board[row][col] !== this.solution[row][col]) {
+            element.classList.add('not-in-solution');
+          } else {
+            element.classList.add('in-solution');
+          }
+        }
+      }
+    }
   };
 
   updateActiveCell = (event) => {
@@ -87,17 +113,23 @@ function onNumberClick(e) {
   game.updateBoard(e.target.id);
 }
 
-function addListenerToNumbers() {
+function onCheckPuzzleClick() {
+  game.checkBoard();
+}
+
+function addListenersToButtons() {
   const buttons = document.getElementsByClassName('number-button');
   const buttonsCount = buttons.length;
   for (let i = 0; i < buttonsCount; i += 1) {
     buttons[i].onclick = onNumberClick;
   }
+
+  document.getElementById('check-puzzle').onclick = onCheckPuzzleClick;
 }
 
 async function startGame() {
   await game.displayBoard();
-  addListenerToNumbers();
+  addListenersToButtons();
 }
 
 document.addEventListener('DOMContentLoaded', startGame);

@@ -32,6 +32,7 @@ function createRandomBoard() {
 
 function generateOne() {
   const board = createRandomBoard();
+  let solutions = [];
 
   const queue = createShuffledArray(0, 80);
   let toRemove = 50;
@@ -45,7 +46,7 @@ function generateOne() {
     const temp = board[row][col];
     board[row][col] = '.';
 
-    const solutions = findSolutions(board);
+    solutions = findSolutions(board);
     const canBeRemoved = solutions.length === 1;
     if (canBeRemoved === false) {
       board[row][col] = temp;
@@ -53,7 +54,7 @@ function generateOne() {
       toRemove -= 1;
     }
   }
-  return board;
+  return { board, solution: solutions[0] };
 }
 
 module.exports = { generateOne };

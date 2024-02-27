@@ -23,5 +23,6 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
+    'class-methods-use-this': 'off',
   },
 };

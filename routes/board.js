@@ -2,6 +2,7 @@ const express = require('express');
 const { ObjectId } = require('mongodb');
 const { connect } = require('../db/client');
 const { generateOne } = require('../generator/generator');
+const { logger } = require('../utils/logger');
 
 const boardRouter = express.Router();
 
@@ -15,8 +16,8 @@ boardRouter.get('/', async (req, res) => {
 boardRouter.post('/', async (req, res) => {
   const db = await connect();
   const collection = db.collection('puzzles');
-  const { board, level } = req.body;
-  const newBoard = { board, level };
+  const { board, level, solution } = req.body;
+  const newBoard = { board, level, solution };
   const result = await collection.insertOne(newBoard);
   return res.send(result).status(204);
 });
@@ -30,8 +31,9 @@ boardRouter.post('/generate', async (req, res) => {
   const promises = [];
 
   for (let i = 0; i < Number(numPuzzles); i += 1) {
-    const board = generateOne();
-    const newBoard = { board, level: 'easy' };
+    const { board, solution } = generateOne();
+    const newBoard = { board, solution, level: 'easy' };
+    logger.log(newBoard);
     promises.push(collection.insertOne(newBoard));
   }
 
